@@ -3,17 +3,12 @@ precision mediump float;
 uniform vec2 u_resolution; 
 uniform float u_time;
 
-float circleShap(vec2 uv, vec2 pos){
-    float radius= .01;
-    float d = length(uv.xy + pos.xy);
-    float c = smoothstep(radius, radius - .001, d);
-    return c;
-}
+
+
 float edge(float start, float end, float axie){
     float e = smoothstep(start, end, axie);
     return e;
 }
-
 float rectShap(vec2 width, vec2 height, vec2 uv, vec2 pos){
     float blur = .001;
     vec2 semiWidth = width /2.;
@@ -27,7 +22,12 @@ float rectShap(vec2 width, vec2 height, vec2 uv, vec2 pos){
 
     return edgeR*edgeL*edgeT*edgeB;
 }
-
+float circleShap(vec2 uv, vec2 pos){
+    float radius= .01;
+    float d = length(uv.xy + pos.xy);
+    float c = smoothstep(radius, radius - .001, d);
+    return c;
+}
 
 
 void main() {
@@ -39,16 +39,17 @@ void main() {
     vec3 red = vec3(1., .0, .0);
     vec3 green = vec3(0., 1.0, .0);
     vec3 blue = vec3(0., .0, 1.0);
+    vec3 cyan = vec3(0., 1.0, 1.0);
     vec3 yellow = vec3(1., 1.0, .0);
     vec3 pink = vec3(1., .0, 1.0);
+    vec3 purple = vec3(.5, .0, 1.0);
     vec3 white = vec3(1., 1.0, 1.0);
 
-    draw += rectShap(vec2(.02), vec2(.02), uv, vec2(-.1*cos(t), -.1*sin(t)))*white;
-    draw += rectShap(vec2(.02), vec2(.02), uv, vec2(-.1, .1*sin(t)))*red;
 
-    draw += circleShap(uv, vec2(cos(t) *.1, -.1* sin(t))) * green;
-    draw += circleShap(uv, vec2(cos(t) *.3, .0 + .1 * sin(t))) * pink ;
-    draw += circleShap(uv, vec2(cos(t) *.2, .0* sin(t))) * blue ;
+    draw += circleShap(uv, vec2(.0, .0)) * purple;
+
+
+    
 
     //OUTPUT
     gl_FragColor = vec4(draw, 1.0);
