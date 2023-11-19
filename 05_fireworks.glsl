@@ -1,4 +1,4 @@
-#define NUM_EXPLOSIONS 1.
+#define NUM_EXPLOSIONS 3.
 #define NUM_PARTICLES  30.
 
 precision mediump float;
